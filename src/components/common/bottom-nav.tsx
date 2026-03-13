@@ -14,8 +14,8 @@ export function BottomNav() {
   const pathname = usePathname();
 
   return (
-    <nav className="bottom-nav">
-      <div className="bottom-nav-grid">
+    <nav className="fixed inset-x-0 bottom-4 z-30 mx-auto w-[calc(100%-1.5rem)] max-w-[448px] rounded-[28px] border border-zinc-200 bg-white/95 p-2 shadow-[0_12px_30px_rgba(0,0,0,0.08)] backdrop-blur">
+      <div className="grid grid-cols-2 gap-2">
         {items.map((item) => {
           const active = pathname === item.href || pathname.startsWith(`${item.href}/`);
           const Icon = item.icon;
@@ -24,15 +24,27 @@ export function BottomNav() {
             <Link
               key={item.href}
               href={item.href}
-              className={cn("bottom-nav-link", active && "bottom-nav-link-active")}
+              className={cn(
+                "rounded-[22px] border px-4 py-3 transition-colors",
+                active
+                  ? "border-zinc-900 bg-zinc-900 text-white"
+                  : "border-transparent bg-zinc-50 text-zinc-900",
+              )}
             >
-              <div className="bottom-nav-link-inner">
-                <div className="bottom-nav-icon">
+              <div className="flex items-center gap-3">
+                <div
+                  className={cn(
+                    "flex size-10 items-center justify-center rounded-2xl",
+                    active ? "bg-white/10" : "bg-white",
+                  )}
+                >
                   <Icon className="size-5" />
                 </div>
                 <div>
-                  <p className="bottom-nav-label">{item.label}</p>
-                  <p className="bottom-nav-caption">{item.caption}</p>
+                  <p className="text-sm font-semibold">{item.label}</p>
+                  <p className={cn("text-xs", active ? "text-zinc-300" : "text-zinc-500")}>
+                    {item.caption}
+                  </p>
                 </div>
               </div>
             </Link>

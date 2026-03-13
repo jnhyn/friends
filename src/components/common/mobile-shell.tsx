@@ -14,9 +14,9 @@ export function MobileShell({
   children: ReactNode;
 }) {
   return (
-    <main className="app-shell grain page-enter">
+    <main className="mx-auto min-h-screen max-w-[480px] bg-white">
       <TopBar title={title} eyebrow={eyebrow} />
-      <div className="shell-content">{children}</div>
+      <div className="min-h-screen px-4 pb-32 pt-32">{children}</div>
       <BottomNav />
     </main>
   );
